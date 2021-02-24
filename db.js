@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+require("dotenv").config()
 
-const sequelize = new Sequelize('journal-walkthrough', 'postgres', 'YOUR_PASSWORD_HERE', {
+const sequelize = new Sequelize('journal-walkthrough', 'postgres', process.env.MY_PASS, {
     host: 'localhost',
     dialect: 'postgres'
 });
