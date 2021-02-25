@@ -3,8 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     const Beer = sequelize.define('beer', {
         name: {
             type: DataTypes.STRING,
-            allowNull: true,
-
+            allowNull: false,
         },
 
         type: {
@@ -12,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         rating: {
-          type: DataTypes.STRING, 
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
 
@@ -20,9 +19,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
+        owner: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     })
 
- return Beer;
+    return Beer;
 };
 

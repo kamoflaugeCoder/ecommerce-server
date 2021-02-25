@@ -5,17 +5,18 @@ const sequelize = require('./db') // where database from
 let beer = require('./controllers/beercontroller')
 let user = require('./controllers/user');
 
-sequelize.sync(); 
+sequelize.sync();
+// sequelize.sync({ force: true });
 app.use(require('./middleware/headers'));
 
 
 // This will address potential CORS issues. Do not move or modify this code. 
 // It must remain under => app.use(require('./middleware/headers'));
 app.options('*', (req, res) => {
-    res.json({
-      status: 'OK'
-    });
+  res.json({
+    status: 'OK'
   });
+});
 
 
 
@@ -28,7 +29,7 @@ app.use('/user', user)
 app.use('/beer', beer)
 
 
-app.listen(3000, function(){
-    console.log('App is listening on port 3000')
+app.listen(3000, function () {
+  console.log('App is listening on port 3000')
 });
 
