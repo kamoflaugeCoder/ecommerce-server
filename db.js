@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 require("dotenv").config()
 
-const sequelize = new Sequelize('journal-walkthrough', 'postgres', process.env.MY_PASS, {
+const sequelize = new Sequelize('beer-wingman', 'postgres', process.env.MY_PASS, {
     host: 'localhost',
     dialect: 'postgres'
 });
@@ -9,7 +9,7 @@ const sequelize = new Sequelize('journal-walkthrough', 'postgres', process.env.M
 sequelize.authenticate().then(
    
     function() {
-        console.log('Connected ');
+        console.log('Connected');
     },
 
     function(err){
