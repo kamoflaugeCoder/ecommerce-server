@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
 require("dotenv").config()
 
-const sequelize = new Sequelize('beer-wingman', 'postgres', process.env.MY_PASS, {
+
+
+const sequelize = new Sequelize(process.env.DB_NAME, 'postgres', process.env.MY_PASS, {
     host: 'localhost',
     dialect: 'postgres'
 });
