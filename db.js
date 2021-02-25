@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 require("dotenv").config()
 
-const sequelize = new Sequelize('journal-walkthrough', 'postgres', process.env.MY_PASS, {
+
+const sequelize = new Sequelize('Wing-DB', 'postgres', process.env.MY_PASS, {
     host: 'localhost',
     dialect: 'postgres'
 });
