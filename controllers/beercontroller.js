@@ -19,7 +19,7 @@ router.post('/create', validateSession, (req, res) => {
         .then(beer => res.status(200).json(beer))
         .catch(err => res.status(500).json({ error: err }))
 });
-
+    
 /* ***************************************
  ***GET ALL ENTRIES ***
  *************************************** */
