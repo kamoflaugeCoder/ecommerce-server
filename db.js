@@ -2,7 +2,8 @@ const Sequelize = require('sequelize');
 require("dotenv").config()
 
 
-const sequelize = new Sequelize('Wing-DB', 'postgres', process.env.MY_PASS, {
+
+const sequelize = new Sequelize(process.env.DB_NAME, 'postgres', process.env.MY_PASS, {
     host: 'localhost',
     dialect: 'postgres'
 });
@@ -10,7 +11,7 @@ const sequelize = new Sequelize('Wing-DB', 'postgres', process.env.MY_PASS, {
 sequelize.authenticate().then(
    
     function() {
-        console.log('Connected ');
+        console.log('Connected');
     },
 
     function(err){
