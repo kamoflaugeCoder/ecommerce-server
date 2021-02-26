@@ -3,7 +3,7 @@ let app = express();
 const sequelize = require('./db') // where database from 
 
 let beer = require('./controllers/beercontroller')
-let user = require('./controllers/user');
+let user = require('./controllers/usercontroller');
 
 sequelize.sync();
 // sequelize.sync({ force: true });

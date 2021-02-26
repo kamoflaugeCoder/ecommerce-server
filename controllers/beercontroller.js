@@ -12,14 +12,14 @@ router.post('/create', validateSession, (req, res) => {
         name: req.body.beer.name,
         type: req.body.beer.type,
         rating: req.body.beer.rating,
-        comments: req.body.beer.comment,
+        comments: req.body.beer.comments,
         owner: req.user.id
     }
     Beer.create(beerEntry)
         .then(beer => res.status(200).json(beer))
         .catch(err => res.status(500).json({ error: err }))
 });
-    
+
 /* ***************************************
  ***GET ALL ENTRIES ***
  *************************************** */
