@@ -10,6 +10,7 @@ const Beer = require('../db').import('../models/beer')
 router.post('/create', validateSession, (req, res) => {
     const beerEntry = {
         name: req.body.beer.name,
+        location: req.body.beer.location,
         type: req.body.beer.type,
         rating: req.body.beer.rating,
         comments: req.body.beer.comment,
@@ -46,6 +47,7 @@ router.get("/mine", validateSession, (req, res) => {
 router.put("/edit/:entryId", validateSession, function (req, res) {
     const editBeer = {
         name: req.body.beer.name,
+        location: req.body.beer.location,
         type: req.body.beer.type,
         rating: req.body.beer.rating,
         comments: req.body.beer.comments,
@@ -64,5 +66,7 @@ router.delete("/delete/:id", validateSession, function (req, res) {
         .then(() => res.status(200).json({ message: "Beer Entry Removed" }))
         .catch((err) => res.status(500).json({ error: err }))
 })
+
+
 
 module.exports = router
