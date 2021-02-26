@@ -13,7 +13,7 @@ router.post('/create', validateSession, (req, res) => {
         location: req.body.beer.location,
         type: req.body.beer.type,
         rating: req.body.beer.rating,
-        comments: req.body.beer.comment,
+        comments: req.body.beer.comments,
         owner: req.user.id
     }
     Beer.create(beerEntry)
