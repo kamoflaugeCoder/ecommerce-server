@@ -1,23 +1,17 @@
 let express = require('express');
 let app = express();
-const sequelize = require('./db') // where database from 
+const sequelize = require('./db') // where database from
+let cors = require('cors');
 
 let beer = require('./controllers/beercontroller')
 let user = require('./controllers/usercontroller');
 
 sequelize.sync();
-// sequelize.sync({ force: true });
+ //sequelize.sync({ force: true });
 app.use(require('./middleware/headers'));
 
-
-// This will address potential CORS issues. Do not move or modify this code. 
-// It must remain under => app.use(require('./middleware/headers'));
-app.options('*', (req, res) => {
-  res.json({
-    status: 'OK'
-  });
-});
-
+// enable CORS using npm package
+app.use(cors());
 
 
 app.use(express.json())
@@ -32,4 +26,3 @@ app.use('/beer', beer)
 app.listen(process.env.PORT, function () {
   console.log('App is listening on port 3000')
 });
-

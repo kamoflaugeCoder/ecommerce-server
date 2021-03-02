@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 
 const User = require('../db').import('../models/user');
@@ -9,6 +8,7 @@ const bcrypt = require('bcryptjs');
 
 /*  -------  USER SIGNUP  ---------  */
 router.post('/register', function (req, res) {
+    console.log('req body', req.body)
     User.create({
 
         email: req.body.user.email,
@@ -78,24 +78,27 @@ module.exports = router;
 
 
 
-/*let express = require('express')
-let router = express.Router();
-let jwt = require('..db').import {  } from "module/user";
+// let express = require('express')
+// let router = express.Router();
+// //let jwt = require('..db').import {  } from "module/user";
 
 
-router.post('/register', function (req, res) {
+// router.post('/register', function (req, res) {
 
-    User.register({
-        email: ""
-        password: ""
-    })
-    .then (
-    res.send('POST request to Beer Wingman for register endpoint');
-  });
+//     //req.body.username
+//     //req.body.password
+//     // console.warn('req.body', req.body)
+//     // User.register({
+//     //     email: ""
+//     //     password: ""
+//     // })
+//     // .then (
+//     res.send('POST request to Beer Wingman for register endpoint');
+//   });
 
-  router.post('/login', function (req, res) {
+//   router.post('/login', function (req, res) {
 
-
-    res.send('POST request to Beer Wingman for login endpoint');
-  });
-module.exports = router;*/
+    
+//     res.send('POST request to Beer Wingman for login endpoint');
+//   });
+// module.exports = router;
