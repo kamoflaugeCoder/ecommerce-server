@@ -8,20 +8,12 @@ const bcrypt = require('bcryptjs');
 
 /*  -------  USER SIGNUP  ---------  */
 router.post('/register', function (req, res) {
-<<<<<<< HEAD:controllers/user.js
-    User.sync();
-    User.create({
-   
-        email: req.body.email,
-       
-        password: bcrypt.hashSync(req.body.password, 13)
-=======
+    console.log('req body', req.body)
     User.create({
 
         email: req.body.user.email,
 
         password: bcrypt.hashSync(req.body.user.password, 13)
->>>>>>> develop:controllers/usercontroller.js
     })
         .then(
             function createSuccess(user) {
@@ -106,14 +98,7 @@ module.exports = router;
 
 //   router.post('/login', function (req, res) {
 
-<<<<<<< HEAD:controllers/user.js
     
 //     res.send('POST request to Beer Wingman for login endpoint');
 //   });
 // module.exports = router;
-=======
-
-    res.send('POST request to Beer Wingman for login endpoint');
-  });
-module.exports = router;*/
->>>>>>> develop:controllers/usercontroller.js
