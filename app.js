@@ -24,6 +24,6 @@ app.use('/user', user)
 app.use('/beer', beer)
 
 
-applicationCache.addEventlistner(process.env.PORT, () => {
+applicationCache.addEventListener(process.env.PORT, () => {
   console.log(`server is listening on port ${process.env.PORT}`)
 })
