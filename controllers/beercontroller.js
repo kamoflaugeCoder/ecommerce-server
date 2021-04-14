@@ -2,21 +2,22 @@ let express = require('express')
 let router = express.Router()
 const validateSession = require('../middleware/validate-session')
 
-const Review = require('../db').import('../models/review')
+const Beer = require('../db').import('../models/beer')
 
 //     * **************************
-//  *****PRODUCT REVIEW CREATE ***
+//  ***** BEER CREATE ***
 //  **************************** * /
 router.post('/create', validateSession, (req, res) => {
-    const productReview = {
-        name: req.review.name,
-        description: req.body.review.description,
-        rating: req.body.review.rating,
-        comments: req.body.review.comments,
+    const beerEntry = {
+        name: req.body.beer.name,
+        location: req.body.beer.location,
+        type: req.body.beer.type,
+        rating: req.body.beer.rating,
+        comments: req.body.beer.comments,
         owner: req.user.id
     }
-    Review.create(productReview)
-        .then(review=> res.status(200).json(review))
+    Beer.create(beerEntry)
+        .then(beer => res.status(200).json(beer))
         .catch(err => res.status(500).json({ error: err }))
 });
 
@@ -25,7 +26,7 @@ router.post('/create', validateSession, (req, res) => {
  *************************************** */
 router.get("/", (req, res) => {
     Beer.findAll()
-        .then(reviews => res.status(200).json(reviews))
+        .then(beers => res.status(200).json(beers))
         .catch(err => res.status(500).json({ error: err }))
 });
 
@@ -34,25 +35,26 @@ router.get("/", (req, res) => {
  ************************* */
 router.get("/mine", validateSession, (req, res) => {
     let userid = req.user.id
-    review.findAll({
+    Beer.findAll({
         where: { owner: userid }
     })
-        .then(reviews => res.status(200).json(reviews))
+        .then(beers => res.status(200).json(beers))
         .catch(err => res.status(500).json({ error: err }))
 });
 
 
 // EDIT CONTROLER
 router.put("/edit/:entryId", validateSession, function (req, res) {
-    const editReview= {
-        description: req.body.review.description,
-        rating: req.body.review.rating,
-        comments: req.body.review.comments,
-        owner: req.user.id
+    const editBeer = {
+        name: req.body.beer.name,
+        location: req.body.beer.location,
+        type: req.body.beer.type,
+        rating: req.body.beer.rating,
+        comments: req.body.beer.comments,
     };
     const query = { where: { id: req.params.entryId, owner: req.user.id } }
-    Review.update(editReview, query)
-        .then((review) => res.status(200).json(review))
+    Beer.update(editBeer, query)
+        .then((beers) => res.status(200).json(beers))
         .catch((err) => res.status(500).json({ error: err }))
 })
 
@@ -60,8 +62,8 @@ router.put("/edit/:entryId", validateSession, function (req, res) {
 router.delete("/delete/:id", validateSession, function (req, res) {
     const query = { where: { id: req.params.id, owner: req.user.id } };
 
-    Review.destroy(query)
-        .then(() => res.status(200).json({ message: "Entry Removed" }))
+    Beer.destroy(query)
+        .then(() => res.status(200).json({ message: "Beer Entry Removed" }))
         .catch((err) => res.status(500).json({ error: err }))
 })
 
