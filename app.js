@@ -19,7 +19,6 @@ async function getUsers() {
       console.log(error);
   }
 }
-
 // async function renderUsers() {
 //   let users = await getUsers();
 //   let html = '';
@@ -38,11 +37,8 @@ async function getUsers() {
 // }
 
 // renderUsers();
-
-
-
 sequelize.sync();
-// sequelize.sync({ force: true });
+// sequelize.sync({ force: true }):
 app.use(require('./middleware/headers'));
 
 // enable CORS using npm package
