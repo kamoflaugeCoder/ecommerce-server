@@ -1,27 +1,37 @@
+// 1
 const Sequelize = require('sequelize');
-require("dotenv").config()
+// const userInfo = require('./userInfo');
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    // host: "localhost",
-    dialect: 'postgres',
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-        }
-})
+//2                     //3           //4         /5          //6
+const sequelize = new Sequelize('ecommerce', 'postgres', 'password', {
+    host: 'localhost',
+    dialect: 'postgres'
+});
 
-sequelize.authenticate().then(
-   
-    function() {
-        console.log('Connected');
-    },
+//9            //10        //11
+sequelize.authenticate().then(() => {
+        console.log('Ecommerce server connected');
+    }),
 
-    function(err){
-        console.log(err);
+    function (err){
+            console.log(err)
     }
-);
 
-module.exports = sequelize; 
+    User = sequelize.import('./models/user');
+    Review = sequelize.import('./models/review');
+    Product = sequelize.import('./models/product'),
+    UserProduct = sequelize.import('./models/userProduct'),
 
+
+    Review.belongsTo(User);
+    User.hasMany(Review);
+    // UserInfo.belongsTo(User);
+
+    User.hasMany(Product);
+    Product.belongsTo(User);
+
+    // .catch(err => {
+    //     console.error('Unable to connect to the database:', err);
+    // });
+//14
+module.exports = sequelize;
