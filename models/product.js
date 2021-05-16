@@ -1,18 +1,22 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
     const Product = sequelize.define('product' , {
         
     //  id, category, description, image, price, title, amount
 
-    itemId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
+    // itemId: {
+    //         type: DataTypes.INTEGER,
+    //         allowNull: false,
+    //     },
         category:{
             type: DataTypes.STRING,
             allowNull: false,   
         },
-        description: {
+        title:{
             type: DataTypes.STRING,
+            allowNull:true
+        },
+        description: {
+            type: DataTypes.TEXT,
             allowNull:true
         },
         image: {
@@ -20,11 +24,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull:true
         },
         price:{
-            type: DataTypes.INTEGER,
-            allowNull:true
-        },
-        title:{
-            type: DataTypes.TEXT,
+            type: DataTypes.DOUBLE,
             allowNull:true
         },
         amount:{

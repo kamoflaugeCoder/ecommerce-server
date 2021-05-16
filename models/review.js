@@ -3,6 +3,10 @@ const { Sequelize } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
     const Review = sequelize.define('review' ,  {
 
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false
@@ -15,9 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         entry: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        owner: {
-            type: DataTypes.INTEGER
         }
     })
 
