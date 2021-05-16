@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
             // see above notes on line 14
             allowNull: false
         },
+        userRole: {
+            type: DataTypes.STRING,
+            allowNull: true
+        }
     })
     // returns the defined User table 
     return User;

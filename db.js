@@ -1,6 +1,5 @@
 // 1
 const Sequelize = require('sequelize');
-// const userInfo = require('./userInfo');
 
 //2                     //3           //4         /5          //6
 const sequelize = new Sequelize('ecommerce', 'postgres', 'password', {
@@ -19,13 +18,13 @@ sequelize.authenticate().then(() => {
 
     User = sequelize.import('./models/user');
     Review = sequelize.import('./models/review');
-    Product = sequelize.import('./models/product'),
-    UserProduct = sequelize.import('./models/userProduct'),
+    Product = sequelize.import('./models/product');
+    Cart = sequelize.import('./models/cart');
+    
 
 
-    Review.belongsTo(User);
-    User.hasMany(Review);
-    // UserInfo.belongsTo(User);
+    Review.belongsTo(Product);
+    Product.hasMany(Review);
 
     User.hasMany(Product);
     Product.belongsTo(User);
