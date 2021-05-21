@@ -9,11 +9,11 @@ const Review = require('../db').import('../models/review');
 //  **************************** * /
 router.post('/create/:productId', validateSession, (req, res) => {
 	const productReview = {
-		name  : req.body.name,
-		title : req.body.title,
-		date  : req.body.date,
-		entry : req.body.entry,
-        productId: req.params.productId
+		name      : req.body.name,
+		title     : req.body.title,
+		date      : req.body.date,
+		entry     : req.body.entry,
+		productId : req.params.productId
 
 		// owner: req.user.id
 	};
@@ -46,14 +46,14 @@ router.get('/mine', validateSession, (req, res) => {
 });
 
 // EDIT CONTROLER
-router.put('/edit/:entryId', validateSession, function(req, res) {
+router.put('/edit/:id', validateSession, function(req, res) {
 	const editReview = {
-		description : req.body.review.description,
-		rating      : req.body.review.rating,
-		comments    : req.body.review.comments,
-		owner       : req.user.id
+		name  : req.body.name,
+		title : req.body.title,
+		date  : req.body.date,
+		entry : req.body.entry
 	};
-	const query = { where: { id: req.params.entryId, owner: req.user.id } };
+	const query = { where: { id: req.params.id } };
 	Review.update(editReview, query)
 		.then((review) => res.status(200).json(review))
 		.catch((err) => res.status(500).json({ error: err }));
@@ -61,7 +61,7 @@ router.put('/edit/:entryId', validateSession, function(req, res) {
 
 // DELETE CONTROLLER
 router.delete('/delete/:id', validateSession, function(req, res) {
-	const query = { where: { id: req.params.id, owner: req.user.id } };
+	const query = { where: { id: req.params.id } };
 
 	Review.destroy(query)
 		.then(() => res.status(200).json({ message: 'Entry Removed' }))

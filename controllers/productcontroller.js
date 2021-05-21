@@ -4,6 +4,7 @@ const validateSession = require('../middleware/validate-session');
 
 const Product = require('../db').import('../models/product');
 const Cart = require('../db').import('../models/cart');
+const Review = require('../db').import('../models/review');
 
 // FETCH HERE======
 
@@ -33,7 +34,9 @@ router.post('/create', validateSession, (req, res) => {
  ***GET ALL ENTRIES ***
  *************************************** */
 router.get('/', (req, res) => {
-	Product.findAll()
+	Product.findAll({
+		include : Review
+	})
 		.then((product) => res.status(200).json(product))
 		.catch((err) => res.status(500).json({ error: err }));
 });
@@ -51,19 +54,17 @@ router.get('/mine', validateSession, (req, res) => {
 });
 
 // // EDIT CONTROLER
-router.put('/edit/:entryId', validateSession, function(req, res) {
+router.put('/edit/:id', validateSession, function(req, res) {
 	const editProduct = {
-		id          : req.body.product.id,
-		category    : req.body.product.category,
-		description : req.body.product.description,
-		image       : req.body.product.image,
-		price       : req.product.price,
-		title       : req.product.title,
-		amount      : req.product.amount
+		category    : req.body.category,
+		description : req.body.description,
+		image       : req.body.image,
+		price       : req.body.price,
+		title       : req.body.title,
+		amount      : req.body.amount
 	};
-	const query = { where: { id: req.params.entryId, owner: req.user.id } };
-	product
-		.update(editproduct, query)
+	const query = { where: { id: req.params.id } };
+	Product.update(editProduct, query)
 		.then((product) => res.status(200).json(product))
 		.catch((err) => res.status(500).json({ error: err }));
 });
@@ -80,7 +81,6 @@ router.delete('/:id', (req, res) => {
 	Product.destroy({
 		where : {
 			id : req.params.id
-        
 		}
 	})
 		.then((product) =>
